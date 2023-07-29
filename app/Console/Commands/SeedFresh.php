@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Database\Console\Migrations\FreshCommand;
 
 class SeedFresh extends Command
 {
