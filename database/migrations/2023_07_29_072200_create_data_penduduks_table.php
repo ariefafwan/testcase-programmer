@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('kartu_keluarga_id')->unsigned();
             $table->foreign('kartu_keluarga_id')->references('id')->on('kartu_keluargas')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('nik')->unique();
+            $table->bigInteger('nik')->unique();
             $table->string('nama');
             $table->date('ttl');
             $table->string('jenis_kelamin');

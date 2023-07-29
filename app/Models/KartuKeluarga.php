@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class KartuKeluarga extends Model
 {
     use HasFactory;
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
 }
