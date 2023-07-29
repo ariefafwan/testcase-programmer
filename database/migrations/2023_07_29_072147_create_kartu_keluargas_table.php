@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kartu_keluargas', function (Blueprint $table) {
             $table->id();
-            $table->string('no_kk')->unique();
+            $table->bigInteger('no_kk')->unique();
             $table->char('village_id');
             $table->foreign('village_id')->references('id')->on('villages')->onDelete('cascade')->onUpdate('cascade');
             $table->string('img');

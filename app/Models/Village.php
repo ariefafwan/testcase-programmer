@@ -36,7 +36,7 @@ class Village extends Model
         'district_id'
     ];
 
-	/**
+    /**
      * Village belongs to District.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -44,5 +44,10 @@ class Village extends Model
     public function district()
     {
         return $this->belongsTo(District::class);
+    }
+
+    public function kartukeluarga()
+    {
+        return $this->hasMany(KartuKeluarga::class);
     }
 }
