@@ -17,15 +17,15 @@ return new class extends Migration
             $table->foreign('kartu_keluarga_id')->references('id')->on('kartu_keluargas')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('nik')->unique();
             $table->string('nama');
-            $table->date('ttl');
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
-            $table->char('provice_id');
-            $table->foreign('provice_id')->references('id')->on('provinces')->onDelete('cascade')->onUpdate('cascade');
-            $table->char('regency_id');
-            $table->foreign('regency_id')->references('id')->on('regencies')->onUpdate('cascade')->onDelete('cascade');
+            $table->char('village_id');
+            $table->foreign('village_id')->references('id')->on('villages')->onUpdate('cascade')->onDelete('cascade');
             $table->string('nomor_hp');
             $table->string('agama');
             $table->string('pekerjaan');
+            $table->timestamps();
         });
     }
 

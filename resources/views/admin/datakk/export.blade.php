@@ -11,7 +11,7 @@
         <tr>
             <td scope="row">{{ $index + 1 }}</td>
             <td>{{ $row->no_kk }}</td>
-            <td>{{ $row->village->name }}, {{ $row->village->district->name }}, {{ $row->village->district->regency->name }}, {{ $row->village->district->regency->province->name }}</td>
+            <td>{{ $row->AlamatLengkap }}</td>
         </tr>
         @endforeach
     </tbody>

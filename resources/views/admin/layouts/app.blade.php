@@ -19,6 +19,13 @@
         * {
             font-family: 'Poppins', sans-serif;
         }
+
+        ul.helper-phone {
+          display: block;
+          font-size: 12px;
+          line-height: 22px;
+          color: darkgrey;
+        }
     </style>
   </head>
   <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-700 text-slate-500">
