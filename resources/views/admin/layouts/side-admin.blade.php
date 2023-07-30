@@ -44,7 +44,7 @@
         </a>
         </li>
         <li>
-        <a href="#" class="@if (Route::is('dashboard')) flex items-center p-2 rounded-lg bg-white px-4 transition-colors text-gray-900 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @else flex items-center p-2 text-blue-50 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @endif">
+        <a href="{{ route('datapenduduk.index') }}" class="@if (Route::is('datapenduduk.index')) flex items-center p-2 rounded-lg bg-white px-4 transition-colors text-gray-900 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @else flex items-center p-2 text-blue-50 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @endif">
             <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">
             <i class="fa fa-address-book" aria-hidden="true"></i>
             </span>
@@ -57,7 +57,7 @@
     </div>
     <ul class="pt-4 mt-2 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
         <li>
-        <a href="#" class="@if (Route::is('profile.edit')) flex items-center p-2 rounded-lg bg-white px-4 transition-colors text-gray-900 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @else flex items-center p-2 text-blue-50 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @endif">
+        <a href="{{ route('profile.edit') }}" class="@if (Route::is('profile.edit')) flex items-center p-2 rounded-lg bg-white px-4 transition-colors text-gray-900 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @else flex items-center p-2 text-blue-50 rounded-lg hover:bg-gray-100 hover:text-gray-900 group @endif">
             <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-900 dark:text-indigo-300">
                 <i class="fa fa-cog" aria-hidden="true"></i>
             </span>

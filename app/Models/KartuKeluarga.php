@@ -13,4 +13,15 @@ class KartuKeluarga extends Model
     {
         return $this->belongsTo(Village::class);
     }
+
+    public function getAlamatLengkapAttribute()
+    {
+        $alamat =  $this->village->name . ',' . $this->village->district->name . ',' . $this->village->district->regency->name . ',' . $this->village->district->regency->province->name;
+        return $alamat;
+    }
+
+    public function data_penduduk()
+    {
+        return $this->hasMany(DataPenduduk::class);
+    }
 }

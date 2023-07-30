@@ -19,39 +19,39 @@
             <div class="p-6 space-y-6">
         <form action="{{ route('kartukeluarga.store' ) }}" method="post" enctype="multipart/form-data">
             @csrf
-                <div class="mb-6">
+                <div class="mb-3">
                     <label for="nokk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number KK</label>
                     <input type="number" name="no_kk" id="nokk" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Input Number KK" required>
                 </div>
-
-                <div class="mb-6">
-                    <label for="province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your province</label>
-                    <select id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="province_id" required>
-                        <option selected>---Choose Your Province---</option>
-                        @foreach ($province as $key => $value)
-                            <option value="{{ $key }}">{{ $value }}</option>
-                        @endforeach
-                    </select>
+                
+                <div class="grid gap-4 mb-3 sm:grid-cols-2 sm:gap-6 sm:mb-3">
+                    <div class="w-full">
+                        <label for="province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your province</label>
+                        <select id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="province_id" required>
+                            <option selected>---Choose Your Province---</option>
+                            @foreach ($province as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="regency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your regency</label>
+                        <select id="regency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="regency_id" required>
+                        </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="district" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your district</label>
+                        <select id="district" name="district_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="village" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your village</label>
+                        <select id="village" name="village_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="mb-6">
-                    <label for="regency" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your regency</label>
-                    <select id="regency" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="regency_id" required>
-                    </select>
-                </div>
-
-                <div class="mb-6">
-                    <label for="district" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your district</label>
-                    <select id="district" name="district_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    </select>
-                </div>
-                <div class="mb-6">
-                    <label for="village" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your village</label>
-                    <select id="village" name="village_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    </select>
-                </div>
-
-                <div class="mb-6">
+                <div class="mb-3">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="img">Upload IMG KK</label>
                     <input name="img" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="img" type="file" required>
                 </div>

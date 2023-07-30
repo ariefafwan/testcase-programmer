@@ -28,13 +28,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     //datakk
-    Route::get('/admin/datakk', [AdminController::class, 'datakk'])->name('kartukeluarga.data');
     Route::get('/admin/kartukeluarga', [AdminController::class, 'indexKartuKeluarga'])->name('kartukeluarga.index');
     Route::get('/getexportdatakk', [AdminController::class, 'exportdatakk'])->name('kartukeluarga.export');
     Route::get('/admin/editdatakk/{id}', [AdminController::class, 'editdatakk'])->name('kartukeluarga.edit');
     Route::post('/admin/storedatakk', [AdminController::class, 'storedatakk'])->name('kartukeluarga.store');
     Route::put('/admin/updatedatakk', [AdminController::class, 'updatedatakk'])->name('kartukeluarga.update');
     Route::delete('/admin/destroydatakk/{id}', [AdminController::class, 'deletedatakk'])->name('kartukeluarga.destroy');
+
+    //datapenduduk
+    Route::get('/admin/datapenduduk', [AdminController::class, 'indexdatapenduduk'])->name('datapenduduk.index');
+    Route::get('/admin/createdatapenduduk', [AdminController::class, 'createdatapenduduk'])->name('datapenduduk.create');
+    Route::get('/admin/editdatapenduduk/{id}', [AdminController::class, 'editdatapenduduk'])->name('datapenduduk.edit');
+    Route::post('/admin/storedatapenduduk', [AdminController::class, 'storedatapenduduk'])->name('datapenduduk.store');
+    Route::put('/admin/updatedatapenduduk', [AdminController::class, 'updatedatapenduduk'])->name('datapenduduk.update');
+    Route::delete('/admin/destroydatapenduduk/{id}', [AdminController::class, 'deletedatapenduduk'])->name('datapenduduk.destroy');
+    Route::get('/getexportdatakk', [AdminController::class, 'exportdatapenduduk'])->name('datapenduduk.export');
 
     //resource ajax
     Route::get('getregency/{id}', [AdminController::class, 'getregency']);

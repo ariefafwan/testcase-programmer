@@ -21,20 +21,22 @@
         </button>
     </div>
 @endif
-    
     <div class="p-4 bg-white rounded-lg dark:border-gray-900">
             <div class="inline-flex rounded-md shadow-sm mb-3" role="group">
                 <!-- Modal toggle -->
-                <button data-modal-target="createmodal" data-modal-toggle="createmodal" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                <a href="{{ route('datapenduduk.create') }}" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     &nbsp;Create Data
-                </button>
-                <a href="{{ route('kartukeluarga.export') }}" class="inline-flex items-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>
+                </a>
+                {{-- <!-- Modal toggle -->
+                <button data-modal-target="importdata" data-modal-toggle="importdata" class="inline-flex items-center text-white bg-pink-900 hover:bg-pink-500 focus:ring-4 focus:outline-none focus:ring-pink-400 font-medium text-sm px-5 py-2.5 text-center dark:bg-pink-900 dark:hover:bg-pink-500 dark:focus:ring-pink-900" type="button">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                    &nbsp;Import Data
+                </button> --}}
+                <a href="{{ route('datapenduduk.export') }}" class="inline-flex items-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" target="_blank"><i class="fa fa-download" aria-hidden="true"></i>
                     &nbsp;Export Data
                 </a>
             </div>
-  
-            @include('admin.datakk.create')
         
             <div class="relative overflow-x-auto shadow-md">
                 <table id="table" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -44,13 +46,19 @@
                                 #
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                NO KK
+                                NIK
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Address
+                                Nama
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                IMG
+                                Tempat Tanggal Lahir
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                L/P
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Alamat Lengkap
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Aksi
@@ -58,17 +66,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($datakk as $index => $row)
+                        @foreach ($datap as $index => $row)
                         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                             <td class="px-6 py-4" scope="row">{{ $loop->iteration }}</td>
-                            <td class="px-6 py-4">{{ $row->no_kk }}</td>
+                            <td class="px-6 py-4">{{ $row->nik }}</td>
+                            <td class="px-6 py-4">{{ $row->nama }}</td>
+                            <td class="px-6 py-4">{{ $row->TempatTanggal }}</td>
+                            <td class="px-6 py-4">{{ $row->jenis_kelamin }}</td>
                             <td class="px-6 py-4">{{ $row->AlamatLengkap }}</td>
-                            <td class="px-6 py-4">
-                                <!-- Modal IMG -->
-                                <a href="{{ asset('storage/img/'.$row->img ) }}" class="showimg block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" target="_blank">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </a>
-                            </td>
                             <td class="px-6 py-4">
                                 <div class="inline-flex rounded-md shadow-sm" role="group">
                                     <a href="#!" class="edit inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white" data-id="{{ $row->id }}" data-modal-target="editmodal" data-modal-toggle="editmodal">
@@ -79,7 +84,7 @@
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                     </a>
                                     <form id="data-delete-form-{{$row->id}}"
-                                        action="{{ route('kartukeluarga.destroy', $row->id) }}" method="POST"
+                                        action="{{ route('datapenduduk.destroy', $row->id) }}" method="POST"
                                         style="display: none;">
                                         @csrf
                                         @method('DELETE')
@@ -91,91 +96,33 @@
                     </tbody>
                 </table>
             </div>
-            @include('admin.datakk.edit')
+            @include('admin.datapenduduk.edit')
   </div>
-  
 @endsection
 
 @push('js')
-<script>
-    $(document).ready(function() {
-        
-        //crete data
-
-        $('#province').on('change', function() {
-            let provinceID = $('#province').val();
-            if(provinceID) {
-                $.ajax({
-                    url: '/getregency/'+provinceID,
-                    type: "GET",
-                    dataType: "JSON",
-                    success:function(data) {                      
-                        $('#regency').empty();
-                        $('#district').empty();
-                        $('#village').empty();
-                        $('#regency').append('<option>---Choose Regency---</option>');
-                        $.each(data, function(key, value) {
-                        // console.log(data);
-                        $('#regency').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                    }
-                });
-            }else{
-                $('#regency').empty();
-            }
-        });
-        $('#regency').on('change', function() {
-            let regencyID = $(this).val();
-            if(regencyID) {
-                $.ajax({
-                    url: '/getdistrict/'+regencyID,
-                    type: "GET",
-                    dataType: "JSON",
-                    success:function(data) {
-                        $('#district').empty();
-                        $('#village').empty();
-                        $('#district').append('<option>---Choose Your District---</option>');
-                        $.each(data, function(key, value) {
-                        $('#district').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                    }
-                });
-            }else{
-                $('#district').empty();
-            }
-        });
-        $('#district').on('change', function() {
-            let districtID = $(this).val();
-            if(districtID) {
-                $.ajax({
-                    url: '/getvillage/'+districtID,
-                    type: "GET",
-                    dataType: "JSON",
-                    success:function(data) {
-                        $('#village').empty();
-                        $('#village').append('<option>---Choose Your Village---</option>');
-                        $.each(data, function(key, value) {
-                        $('#village').append('<option value="'+ key +'">'+ value +'</option>');
-                        });
-                    }
-                });
-            }else{
-                $('#village').empty();
-            }
-        });
-
+  <script>
+    $(document).ready(function () {
         //editdata
-
         $('.edit').on("click",function() {
             let editid = $(this).attr('data-id');
             $.ajax({
-                url: '/admin/editdatakk/'+editid,
+                url: '/admin/editdatapenduduk/'+editid,
                 type: "GET",
                 dataType: "JSON",
                 success: function(data)
                 {
                     $('#editid').val(data.id);
-                    $('#editnokk').val(data.no_kk);
+                    $('#editnik').val(data.nik);
+                    $('#editnama').val(data.nama);
+                    $('#edittempat_lahir').val(data.tempat_lahir);
+                    $('#edittanggal_lahir').val(data.tanggal_lahir);
+                    $('#editnomor_hp').val(data.nomor_hp);
+                    $('#editpekerjaan').val(data.pekerjaan);
+                    $('#editagama').val(data.agama);
+                    $('#editjenis_kelamin').val(data.jenis_kelamin);
+                    $('#editkartukeluarga_id').val(data.kartu_keluarga_id);
+                    
                     
                     $('#editprovince').val(data.village.regency.province.id);
                     
@@ -291,5 +238,5 @@
             });
         });
     });
-</script>
+  </script>
 @endpush
