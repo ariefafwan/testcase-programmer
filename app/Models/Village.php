@@ -50,4 +50,9 @@ class Village extends Model
     {
         return $this->hasMany(KartuKeluarga::class);
     }
+
+    public function data_penduduk()
+    {
+        return $this->hasMany(DataPenduduk::class);
+    }
 }
