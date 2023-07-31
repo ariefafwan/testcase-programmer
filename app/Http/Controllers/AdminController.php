@@ -174,6 +174,7 @@ class AdminController extends Controller
         $province = Province::pluck('name', 'id');
         $kartukeluarga = KartuKeluarga::pluck('no_kk', 'id');
         return view('admin.datapenduduk.index', compact('datap', 'page', 'province', 'kartukeluarga'));
+        // dd(PendudukResource::collection(DataPenduduk::all()));
     }
 
     public function createdatapenduduk()
