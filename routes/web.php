@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/storedatapenduduk', [AdminController::class, 'storedatapenduduk'])->name('datapenduduk.store');
     Route::put('/admin/updatedatapenduduk', [AdminController::class, 'updatedatapenduduk'])->name('datapenduduk.update');
     Route::delete('/admin/destroydatapenduduk/{id}', [AdminController::class, 'deletedatapenduduk'])->name('datapenduduk.destroy');
-    Route::get('/getexportdatakk', [AdminController::class, 'exportdatapenduduk'])->name('datapenduduk.export');
+    Route::get('/getexportdatapenduduk', [AdminController::class, 'exportdatapenduduk'])->name('datapenduduk.export');
 
     //resource ajax
     Route::get('getregency/{id}', [AdminController::class, 'getregency']);

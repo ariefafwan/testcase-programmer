@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\JenisKelaminPendududkChart;
+use App\Charts\PendudukLakiChart;
+use App\Charts\PendudukPerempuanChart;
 use App\Exports\DataPendudukExport;
 use App\Exports\KartuKeluargaExport;
 use App\Models\DataPenduduk;
@@ -19,10 +22,15 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(PendudukPerempuanChart $chartperempuan, PendudukLakiChart $chartlaki)
     {
         $page = "Dashboard Admin";
-        return view('admin.dashboard', compact('page'));
+        $grafikp = $chartperempuan->build();
+        $grafikl = $chartlaki->build();
+        $totalpenduduk = DataPenduduk::all()->count();
+        $totalkk = KartuKeluarga::all()->count();
+        $totalkelurahan = Village::all()->count();
+        return view('admin.dashboard', compact('page', 'grafikp', 'grafikl', 'totalpenduduk', 'totalkk', 'totalkelurahan'));
     }
 
     // public function datakk()
